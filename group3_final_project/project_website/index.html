@@ -1,0 +1,792 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Columbia University EECS E4764 IoT Project Report #3</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style>
+		.flowchart {
+			font-family: Arial, sans-serif;
+			margin: 20px 0;
+			display: inline-block;
+			vertical-align: top;
+			width: 22%;
+			margin-right: 2%;
+			min-width: 200px;
+		}
+		.flow-title {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		.box {
+			border: 2px solid #4a90e2;
+			padding: 8px 12px;
+			border-radius: 8px;
+			display: block;
+			margin: 8px auto;
+			background: #eaf3ff;
+			font-size: 13px;
+			text-align: center;
+		}
+		.arrow {
+			text-align: center;
+			font-size: 18px;
+			margin: 3px 0;
+		}
+		.decision {
+			border-color: #e29a00;
+			background: #fff6d9;
+		}
+		.flow-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+		.branch-label {
+			border: 2px solid #4a90e2;
+			padding: 4px 8px;
+			border-radius: 6px;
+			display: inline-block;
+			background: #eaf3ff;
+			font-size: 12px;
+			font-weight: bold;
+			margin: 5px auto;
+		}
+		.branch-container {
+			display: flex;
+			justify-content: space-around;
+			margin: 8px 0;
+			position: relative;
+			padding-top: 15px;
+		}
+		.branch-container::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 2px;
+			height: 15px;
+			background: #4a90e2;
+			transform: translateX(-50%);
+		}
+		.branch-container::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 2px;
+			background: #4a90e2;
+		}
+		.branch-item {
+			flex: 1;
+			text-align: center;
+			position: relative;
+		}
+		.branch-item::before {
+			content: '';
+			position: absolute;
+			top: -15px;
+			left: 50%;
+			width: 2px;
+			height: 15px;
+			background: #4a90e2;
+			transform: translateX(-50%);
+		}
+		#team .item .image.fit img {
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 8px;
+		}
+		</style>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<!-- <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span> -->
+							<h1 id="title">Smart Door Lock System</h1>
+							<p>Columbia University <br>
+								EECS E4764 Fall'25 <br>
+								Artificial Intelligence of Things<br>
+								Team 3 Project Report
+							</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<!--
+
+								Prologue's nav expects links in one of two formats:
+
+								1. Hash link (scrolls to a different section within the page)
+
+								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
+
+								2. Standard link (sends the user to another page/site)
+
+								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
+
+							-->
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Abstract</span></a></li>
+								<li><a href="#motivation" id="motivation-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Motivation</span></a></li>
+								<li class="has-submenu">
+									<a href="#system" id="system-link" class="skel-layers-ignoreHref"><span class="icon fa-th">System</span></a>
+									<ul class="submenu" id="system-submenu">
+										<li><a href="#architecture" class="skel-layers-ignoreHref"><span class="icon fa-angle-right">1. Architecture</span></a></li>
+										<li><a href="#technical-components" class="skel-layers-ignoreHref"><span class="icon fa-angle-right">2. Technical Components</span></a></li>
+										<li><a href="#prototype" class="skel-layers-ignoreHref"><span class="icon fa-angle-right">3. Prototype</span></a></li>
+									</ul>
+								</li>
+								<li><a href="#results" id="results-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Results</span></a></li>
+								<li><a href="#references" id="references-link" class="skel-layers-ignoreHref"><span class="icon fa-th">References</span></a></li>
+								<li><a href="#team" id="team-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Our Team</span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/C8YxgMMNbao" frameborder="0" allowfullscreen></iframe>
+
+								<h2 class="alt">Smart Door Lock System</h2>
+								<p>An intelligent IoT door lock system with face detection, voice control, and mobile app integration.</p>
+								<p>This project implements a smart door lock system that integrates ESP32 microcontrollers, a Python server with AI-powered face detection, and an iOS mobile application. The system provides multiple authentication methods including password-based access, temporary password generation, and voice-controlled commands. It features real-time face detection, automatic email notifications, and seamless integration between hardware sensors, server processing, and mobile control.</p>
+
+
+							<footer>
+								<a href="#motivation" class="button scrolly">Motivation</a>
+							</footer>
+
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="motivation" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Motivation</h2>
+							</header>
+
+							<p align="left">In modern households and commercial environments, traditional door lock systems face multiple limitations, including weak security, lack of remote monitoring capability, and poor integration with smart devices. With the increasing demand for intelligent access control and the rapid adoption of IoT technologies, there is a need for a more secure, flexible, and user-friendly door lock system. Our motivation is to design an AI-enhanced smart door lock that combines face recognition, multi-factor  improve home safety, streamline user experience, and demonstrate how embedded systems, AI, and mobile platforms can be integrated into a cohesive, modern access-control solution.</p>
+
+						</div>
+					</section>
+
+
+					<section id="system" class="three">
+						<div class="container">
+
+							<header>
+								<h2>System</h2>
+							</header>
+
+							<p align="left">This section describes the system architecture, technical components, and prototype implementation.</p>
+
+							<h3 align="left" id="architecture">1. Architecture</h3>
+
+							<p align="center"><img src="images/architecture.jpg" alt="System Architecture" style="max-width: 100%; height: auto; margin: 20px 0;"></p>
+
+							<h4 align="left">1.1 System Overall Structure</h4>
+							<p align="left">
+								The system adopts a three-tier distributed architecture, with all components connected through a local WiFi network. The architecture consists of:<br>
+								• <strong>ESP32 Main Board</strong>: Hardware control hub with sensors and I/O devices<br>
+								• <strong>ESP32 Camera Module</strong>: Independent camera device serving images via HTTP<br>
+								• <strong>PC Server</strong>: Central processing unit handling AI/ML tasks and coordination<br>
+								• <strong>iOS Mobile App</strong>: User interface for remote control and monitoring<br>
+								• <strong>WiFi Network</strong>: Communication backbone connecting all devices
+							</p>
+
+							<h4 align="left">1.2 Data Flow and Interaction Workflows</h4>
+							
+							<div class="flow-container">
+								<div class="flowchart">
+									<div class="flow-title">1. Email Notification Flow</div>
+
+									<div class="box">ESP32 PIR detects motion → sends POST /trigger</div>
+									<div class="arrow">↓</div>
+
+									<div class="box">Server fetches 3 images from XIAO ESP32 Camera → OpenCV face detection</div>
+									<div class="arrow">↓</div>
+
+									<div class="box decision">At least 2 images have faces?</div>
+									<div class="branch-container">
+										<div class="branch-item">
+											<div class="branch-label">Yes</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Send email with image</div>
+										</div>
+										<div class="branch-item" style="margin-left: 5px;">
+											<div class="branch-label">No</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Stop, no email</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flowchart">
+									<div class="flow-title">2. Password Unlock Flow</div>
+
+									<div class="box">User presses "A" → inputs password → presses "#"</div>
+									<div class="arrow">↓</div>
+
+									<div class="box decision">Temporary password?</div>
+									<div class="branch-container">
+										<div class="branch-item">
+											<div class="branch-label">Yes</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Verify with server</div>
+										</div>
+										<div class="branch-item" style="margin-left: 5px;">
+											<div class="branch-label">No</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Verify locally</div>
+										</div>
+									</div>
+									<div class="arrow">↓</div>
+									<div class="box decision">Verification success?</div>
+									<div class="branch-container">
+										<div class="branch-item">
+											<div class="branch-label">Yes</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Buzzer + OLED: Unlock</div>
+										</div>
+										<div class="branch-item" style="margin-left: 5px;">
+											<div class="branch-label">No</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Long beep + OLED: Lock</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flowchart">
+									<div class="flow-title">3. Mobile Control Flow</div>
+
+									<div class="box">iOS user taps button → App sends POST /mobile_command</div>
+									<div class="arrow">↓</div>
+
+									<div class="box">Server queues command → ESP32 polls /get_mobile_command</div>
+									<div class="arrow">↓</div>
+
+									<div class="box decision">Command available?</div>
+									<div class="branch-container">
+										<div class="branch-item">
+											<div class="branch-label">Yes</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">ESP32 executes command</div>
+										</div>
+										<div class="branch-item" style="margin-left: 5px;">
+											<div class="branch-label">No</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Wait and poll again</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flowchart">
+									<div class="flow-title">4. LLM Recording Flow</div>
+
+									<div class="box">iOS user records audio → stops recording</div>
+									<div class="arrow">↓</div>
+
+									<div class="box">App sends audio to Gemini API → transcription + command parsing</div>
+									<div class="arrow">↓</div>
+
+									<div class="box decision">Command recognized?</div>
+									<div class="branch-container">
+										<div class="branch-item">
+											<div class="branch-label">Yes</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Send command to server</div>
+										</div>
+										<div class="branch-item" style="margin-left: 5px;">
+											<div class="branch-label">No</div>
+											<div class="arrow">↓</div>
+											<div class="box" style="font-size: 11px; padding: 6px 8px;">Show error</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<h4 align="left">1.3 System Module Division</h4>
+							<p align="left">
+								The system is divided into four main modules, each handling specific data processing tasks:<br><br>
+
+								<strong>Hardware Control Module (ESP32 Main Board)</strong><br>
+								• Processes PIR sensor signals (digital HIGH/LOW) → generates JSON trigger data<br>
+								• Processes keypad input (character data) → password strings<br>
+								• Processes password verification (string comparison, server verification) → boolean results<br>
+								• Processes commands from server (JSON data) → executes and generates feedback (PWM signals, OLED text)<br><br>
+
+								<strong>Image Acquisition Module (ESP32 Camera)</strong><br>
+								• Captures JPEG image data from camera sensor<br>
+								• Serves image data via HTTP server (responds to GET requests with JPEG binary data)<br><br>
+
+								<strong>Processing & Coordination Module (PC Server)</strong><br>
+								• Processes JSON requests (from ESP32 and iOS) → generates JSON responses<br>
+								• Processes image data (JPEG → numpy arrays → OpenCV face detection) → face detection results<br>
+								• Processes face detection results (3 images) → decision data (send email or not)<br>
+								• Manages command queue data (FIFO list) → provides commands to ESP32<br>
+								• Manages temporary password data (dictionary storage) → generates and verifies passwords<br>
+								• Processes email data (image Base64 encoding, MIME format) → sends via SMTP<br>
+								• Encodes image data as Base64 → returns in JSON for iOS app<br><br>
+
+								<strong>User Interface Module (iOS App)</strong><br>
+								• Processes user input (button taps, text input) → command data<br>
+								• Processes audio data (M4A recording → Base64 encoding) → sends to Gemini API<br>
+								• Processes AI responses (transcribed text → command parsing) → command strings<br>
+								• Processes network data (JSON requests/responses) → command execution<br>
+								• Processes image data (Base64 decoding → UIImage) → displays in UI<br>
+								• Manages configuration data (server IP, API keys) → stores in UserDefaults
+							</p>
+
+							<h3 align="left" id="technical-components">2. Technical Components</h3>
+
+							<h4 align="left">2.1 Hardware Components</h4>
+							<p align="left">
+								<strong>ESP32 Main Board</strong><br>
+								• ESP32 development board with MicroPython runtime<br>
+								• PIR motion sensor: Detects human motion (5-7m range)<br>
+								• 4x4 matrix keypad: Password input interface<br>
+								• OLED display (128x32, I2C): Status and feedback display<br>
+								• Buzzer (PWM): Audio feedback (2500Hz success, 1500Hz error)<br><br>
+
+								<strong>ESP32 Camera Module</strong><br>
+								• ESP32-CAM with OV2640 camera sensor (2MP)<br>
+								• HTTP server for image serving<br>
+								• Generates an IP address
+							</p>
+
+							<h4 align="left">2.2 Software Components (Device Side - ESP32)</h4>
+							<p align="left">
+								<strong>MicroPython Runtime</strong><br>
+								• Python 3.x syntax, Machine module for I/O, Network module for WiFi, Urequests for HTTP<br><br>
+
+								<strong>PIR Detection</strong><br>
+								• State machine with edge detection, 3-second debounce, 5-second cooldown<br>
+								• Sends JSON POST to /trigger endpoint<br><br>
+
+								<strong>Keypad & Password System</strong><br>
+								• Row-by-row scanning algorithm, key mapping to characters<br>
+								• Global password (default: "123") and temporary password verification via server<br>
+								• Real-time OLED feedback, 10-second input timeout<br><br>
+
+								<strong>Command Polling</strong><br>
+								• Polls /get_mobile_command every 1 second<br>
+								• Executes commands (lock, unlock, change_password, display_text) with OLED and buzzer feedback
+							</p>
+
+							<h4 align="left">2.3 Software Components (Server / AI Side)</h4>
+							<p align="left">
+								<strong>Flask Web Framework</strong><br>
+								• RESTful API on port 8080, multi-threaded, JSON format<br>
+								• Endpoints: /trigger, /mobile_command, /get_mobile_command, /generate_temp_password, /verify_temp_password<br><br>
+
+								<strong>OpenCV Face Detection</strong><br>
+								• Haar Cascade classifier (haarcascade_frontalface_default.xml)<br>
+								• Pipeline: JPEG → numpy array → grayscale → face detection<br>
+								• Parameters: scaleFactor=1.1, minNeighbors=5, minSize=(30,30)<br>
+								• Workflow: 0.5s delay → 3 images (1/sec) → requires 2+ faces → send email<br><br>
+
+								<strong>Email Service (SMTP)</strong><br>
+								• SMTP with TLS (smtp.gmail.com:587), MIME multipart with Base64 image attachment<br><br>
+
+								<strong>Command Queue & Password System</strong><br>
+								• FIFO queue (Python list, max 10 commands)<br>
+								• Temporary passwords: 6-digit random, dictionary storage, one-time use<br><br>
+
+								<strong>Image Acquisition</strong><br>
+								• HTTP GET from XIAO ESP32 Camera, multiple path retry, Base64 encoding for iOS
+							</p>
+
+							<p align="left"><strong>API Endpoints:</strong></p>
+							<table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+								<thead>
+									<tr style="background-color: #f0f0f0;">
+										<th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Endpoint</th>
+										<th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Method</th>
+										<th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Purpose</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/trigger</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">POST</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">PIR trigger, start face detection</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/lock</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Lock command</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/unlock</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Unlock command</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/change_password</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Change password command</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/take_photo</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Legacy photo capture</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/mobile_command</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">POST</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Mobile app command interface</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/get_mobile_command</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">ESP32 command polling</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/generate_temp_password</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">POST</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Generate temporary password</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/verify_temp_password</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">POST</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Verify temporary password</td>
+									</tr>
+									<tr>
+										<td style="border: 1px solid #ddd; padding: 8px;">/health</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">GET</td>
+										<td style="border: 1px solid #ddd; padding: 8px;">Health check</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<h4 align="left">2.4 Software Components (Mobile App - iOS)</h4>
+							<p align="left">
+								<strong>Development Framework</strong><br>
+								• Swift, UIKit, AVFoundation, URLSession, UserDefaults<br><br>
+
+								<strong>User Interface</strong><br>
+								• Control buttons (Lock, Unlock, Change Password, Take Photo, Display Text)<br>
+								• Audio recording (M4A, 44.1kHz) with AVAudioRecorder<br>
+								• Server IP configuration and settings management<br><br>
+
+								<strong>Network & AI Integration</strong><br>
+								• HTTP POST with JSON to /mobile_command endpoint<br>
+								• Base64 image decoding and display<br>
+								• Gemini API integration: Audio → transcription → command parsing
+							</p>
+
+							<h4 align="left">2.5 Communication Protocol Details</h4>
+							<p align="left">
+								<strong>WiFi & HTTP</strong><br>
+								• IEEE 802.11 WiFi, infrastructure mode, local network<br>
+								• HTTP/1.1, GET/POST methods, port 8080, JSON format<br><br>
+
+								<strong>Data Formats</strong><br>
+								• JSON: Request/response data exchange (commands, status, image_base64)<br>
+								• SMTP: Email transmission with Base64 image attachments<br>
+								• I2C: OLED display communication (400kHz, device address 0x3C)<br>
+								• PWM: Buzzer control (2500Hz success, 1500Hz error, 50% duty cycle)<br>
+								• Base64: Image data encoding for JSON transmission
+							</p>
+
+							<h3 align="left" id="prototype">3. Prototype</h3>
+
+							<h4 align="left">3.1 Implemented Features</h4>
+							<p align="left">
+								<strong>Core Functionality</strong><br>
+								• PIR motion detection with automatic face detection trigger<br>
+								• Face detection using OpenCV Haar Cascade classifier<br>
+								• Email notification when faces detected (at least 2 out of 3 images)<br>
+								• Password-based unlock system (global and temporary passwords)<br>
+								• Remote control via iOS app (lock, unlock, change password, display text)<br>
+								• Photo capture from camera module via iOS app<br>
+								• Real-time status display on OLED screen<br>
+								• Audio feedback via buzzer for operations<br>
+								• Temporary password generation and one-time verification<br>
+								• Command queue system for reliable mobile command delivery<br><br>
+
+								<strong>User Interface Features</strong><br>
+								• iOS app with intuitive button-based control interface<br>
+								• Server IP configuration with persistence<br>
+								• Photo display in app after capture<br>
+								• Audio recording functionality<br>
+								• Settings interface for API key configuration<br><br>
+
+								<strong>Hardware Integration</strong><br>
+								• ESP32 main board with PIR sensor, keypad, OLED, and buzzer<br>
+								• ESP32 camera module with HTTP image server<br>
+								• WiFi connectivity for all devices<br>
+								• I2C communication for OLED display<br>
+								• PWM control for buzzer audio feedback
+							</p>
+
+							<h4 align="left">3.2 UI Screenshots and Hardware Photos</h4>
+							<p align="left">
+								<em>Note: Please add screenshots and photos here</em><br><br>
+								• iOS App Main Interface: Control buttons, IP input, recording button<br>
+								• iOS App Photo Display: Captured image viewer<br>
+								• ESP32 Hardware Setup: Main board with connected sensors and displays<br>
+								• ESP32 Camera Module: Camera module setup<br>
+								• OLED Display: Various status screens (password input, unlock status, etc.)
+							</p>
+
+
+
+
+						</div>
+					</section>
+
+
+					<section id="results" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Results</h2>
+							</header>
+
+							<div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 30px 0;">
+								<div style="text-align: center; margin: 10px;">
+									<img src="images/board.jpg" alt="ESP32 Main Board" style="max-width: 400px; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+									<p style="margin-top: 10px; font-weight: bold;">ESP32 Main Board</p>
+								</div>
+								<div style="text-align: center; margin: 10px;">
+									<img src="images/camera.jpg" alt="ESP32 Camera Module" style="max-width: 400px; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+									<p style="margin-top: 10px; font-weight: bold;">ESP32 Camera Module</p>
+								</div>
+							</div>
+
+							<h3 align="left">Motion Detection & Face Recognition</h3>
+							<p align="left">
+								The system successfully detects motion using the PIR sensor and performs face recognition on captured images. When motion is detected, the server automatically captures 3 images at 1-second intervals from the ESP32 camera module. Using OpenCV's Haar Cascade classifier, the system analyzes each image for faces. If at least 2 out of 3 images contain detected faces, an email notification is automatically sent to the configured recipient with the last valid face image attached.
+							</p>
+							<div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0;">
+								<div style="text-align: center; margin: 10px;">
+									<img src="images/face_recognition.png" alt="Face Recognition Result" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+								</div>
+								<div style="text-align: center; margin: 10px;">
+									<img src="images/face_recognition_2.png" alt="Face Recognition Result 2" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+								</div>
+							</div>
+
+							<h3 align="left">Password Authentication</h3>
+							<p align="left">
+								The password authentication system supports both global master password and temporary password verification. Users can enter passwords via the 4x4 keypad, with real-time visual feedback displayed on the OLED screen. The system provides clear audio and visual indicators for successful authentication (unlock) or failed attempts (lock). Temporary passwords are generated by the server as 6-digit codes and can only be used once, providing enhanced security for guest access.
+							</p>
+
+							<h3 align="left">Mobile Control & Voice Command Recognition</h3>
+							<p align="left">
+								<strong>Mobile Control:</strong> The iOS mobile application provides seamless remote control of the door lock system. Users can send commands including lock, unlock, password change, photo capture, and custom text display. Commands are reliably delivered through a queue-based polling system, ensuring ESP32 receives and executes commands even with intermittent network connectivity. The system demonstrates low latency with commands typically executed within 1-2 seconds of being sent from the mobile app.
+							</p>
+							<p align="left">
+								<strong>Voice Command Recognition:</strong> The voice command feature integrates Google Gemini API for speech-to-text transcription and natural language command parsing. Users can record voice commands through the iOS app, and the system accurately recognizes commands such as "lock", "unlock", "change password [number]", and "take photo". The system successfully parses natural language variations and executes the corresponding actions, demonstrating robust voice interaction capabilities.
+							</p>
+							<div style="display: flex; justify-content: center; flex-wrap: nowrap; margin: 20px 0; gap: 20px;">
+								<div style="text-align: center;">
+									<img src="images/app1.png" alt="Mobile Control App Interface" style="max-width: 300px; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+								</div>
+								<div style="text-align: center;">
+									<img src="images/app2.png" alt="Voice Command Interface" style="max-width: 300px; height: auto; border: 2px solid #ddd; border-radius: 8px;">
+								</div>
+							</div>
+
+							<h3 align="left">Email Notification</h3>
+							<p align="left">
+								The system automatically sends email notifications when face detection is successful. After the PIR sensor detects motion and the server confirms at least 2 out of 3 captured images contain faces, an email is sent to the configured recipient with the last valid face image attached. The email service uses SMTP with TLS encryption, ensuring secure delivery of notifications. This feature provides real-time alerts for security monitoring and access tracking.
+							</p>
+							<p align="center">
+								<img src="images/email.png" alt="Email Notification Result" style="max-width: 300px; height: auto; margin: 20px 0; border: 2px solid #ddd; border-radius: 8px;">
+							</p>
+
+						</div>
+					</section>
+
+					<section id="references" class="three">
+						<div class="container">
+
+							<header>
+								<h2>References</h2>
+							</header>
+
+							<div align="left" style="max-width: 900px; margin: 0 auto;">
+								
+								<ul style="list-style: none; padding-left: 0; margin-bottom: 1.5em;">
+									<li style="margin-bottom: 0.75em; padding-left: 1.5em; position: relative;">
+										<span style="position: absolute; left: 0; color: #666;">[1]</span>
+										<strong>Flask Development Team.</strong> Flask: A Python Microframework for Web Development. Retrieved from <a href="https://flask.palletsprojects.com" target="_blank" style="color: #4a90e2; text-decoration: none; border-bottom: 1px dotted #4a90e2;">https://flask.palletsprojects.com</a>
+									</li>
+									<li style="margin-bottom: 0.75em; padding-left: 1.5em; position: relative;">
+										<span style="position: absolute; left: 0; color: #666;">[2]</span>
+										<strong>OpenCV Development Team.</strong> OpenCV: Open Source Computer Vision Library. Retrieved from <a href="https://opencv.org" target="_blank" style="color: #4a90e2; text-decoration: none; border-bottom: 1px dotted #4a90e2;">https://opencv.org</a>
+									</li>
+									<li style="margin-bottom: 0.75em; padding-left: 1.5em; position: relative;">
+										<span style="position: absolute; left: 0; color: #666;">[3]</span>
+										<strong>Google AI.</strong> Gemini API: Generative AI Models. Retrieved from <a href="https://ai.google.dev" target="_blank" style="color: #4a90e2; text-decoration: none; border-bottom: 1px dotted #4a90e2;">https://ai.google.dev</a>
+									</li>
+									<li style="margin-bottom: 0.75em; padding-left: 1.5em; position: relative;">
+										<span style="position: absolute; left: 0; color: #666;">[4]</span>
+										<strong>Apple Inc.</strong> iOS Developer Documentation: UIKit, AVFoundation, and URLSession. Retrieved from <a href="https://developer.apple.com/documentation" target="_blank" style="color: #4a90e2; text-decoration: none; border-bottom: 1px dotted #4a90e2;">https://developer.apple.com/documentation</a>
+									</li>
+									<li style="margin-bottom: 0.75em; padding-left: 1.5em; position: relative;">
+										<span style="position: absolute; left: 0; color: #666;">[5]</span>
+										<strong>MicroPython Development Team.</strong> MicroPython: Python for Microcontrollers. Retrieved from <a href="https://micropython.org" target="_blank" style="color: #4a90e2; text-decoration: none; border-bottom: 1px dotted #4a90e2;">https://micropython.org</a>
+									</li>
+								</ul>
+
+							</div>
+
+						</div>
+					</section>
+
+
+				<!-- About Me -->
+					<section id="team" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Our Team</h2>
+							</header>
+
+							<!-- <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a> -->
+
+
+							<div class="row">
+								<div class="3u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/lizhong_wang.jpg" alt="Lizhong Wang" /></a>
+										<header>
+											<h3>Lizhong Wang</h3>
+										</header>
+									</article>
+								</div>
+								<div class="3u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/zhenghang_zhao.PNG" alt="Zhenghang Zhao" /></a>
+										<header>
+											<h3>Zhenghang Zhao</h3>
+										</header>
+									</article>
+								</div>
+								<div class="3u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/yankun_li.jpeg" alt="Yankun Li" /></a>
+										<header>
+											<h3>Yankun Li</h3>
+										</header>
+									</article>
+								</div>
+								<div class="3u$ 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/shurong_zhang.jpg" alt="Zhang Shurong" /></a>
+										<header>
+											<h3>Zhang Shurong</h3>
+										</header>
+									</article>
+								</div>
+							</div>
+
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Contact</h2>
+							</header>
+
+							<p align="left">
+								<strong>Lizhong Wang, lw3225: </strong><a href="mailto:lw3225@columbia.edu">lw3225@columbia.edu</a><br>
+								<strong>Zhenghang Zhao, zz3410: </strong><a href="mailto:zz3410@columbia.edu">zz3410@columbia.edu</a><br>
+								<strong>Yankun Li, yl6022: </strong><a href="mailto:yl6022@columbia.edu">yl6022@columbia.edu</a><br>
+								<strong>Zhang Shurong, sz3397: </strong><a href="mailto:sz3397@columbia.edu">sz3397@columbia.edu</a><br>
+							</br>
+								<strong>Columbia University </strong><a href="http://www.ee.columbia.edu">Department of Electrical Engineering</a><br>
+								<!-- <strong>Class Website:</strong>
+									<a href="https://edblogs.columbia.edu/eecs4764-001-2019-3/">Columbia University EECS E4764 Fall '22 IoT</a></br> -->
+								<strong>Instructor:</strong> <a href="https://www.engineering.columbia.edu/faculty-staff/directory/xiaofan-fred-jiang">Professsor Xiaofan (Fred) Jiang</a>
+							</p>
+
+
+							<!-- <form method="post" action="#">
+								<div class="row">
+									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="12u$">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="12u$">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form> -->
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; IoT Project | All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
